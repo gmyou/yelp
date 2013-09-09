@@ -36,9 +36,11 @@ def do_test(term, loc, idx=0):
     #g = open('grid_ca', 'r')
     #g = open('grid_ca_'+term+'.1', 'r')
     #g = open('grid_ca_'+term+'.2', 'r')
-    #g = open('grid_ca_'+term+'.'+idx, 'r')
-    g = open('grid_ca_'+term+'_over1000', 'r')
+    #g = open('grid_ca_'+term+'.'+str(idx), 'r')
+    #g = open('grid_ca_'+term+'_over1000', 'r')
+    g = open('grid_ca_'+term+'.'+str(idx), 'r')
 
+    """
     pos = []
     
     for p in g:                                                  
@@ -69,7 +71,28 @@ def do_test(term, loc, idx=0):
         time.sleep(0.1)
         
         #break
-      
+    """
+    
+    for s in g:
+        
+        #print s
+
+        #url_params = '-q="'+term+'" --bounds="'+s+'" --offset='+str(x)
+        url_params = '-q="'+term+'" --bounds="'+s+'"'
+        #Log
+        f.write(loc+'\t'+str(x)+'\n')
+        #Json
+        o = '/data/yelp/json/'+term+'/'+loc+'/'+term+'_'+loc+'_'+str(x)+'.json'
+        print o
+        print 'python yelp.py '+url_params
+        #break
+        os.system('python yelp.py '+url_params+' >> '+o)
+        x+=1
+        
+        time.sleep(0.1)
+        
+        #break
+    
     f.close()
 
             
