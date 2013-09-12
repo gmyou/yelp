@@ -27,7 +27,8 @@ food = {'ak':26,'al':51,'ar':36,'az':522 ,'ca':1258,'co':180 ,'ct':28,'de':29,'f
 
 
 
-def do_test(term, loc, idx=0):
+#def do_test(term, loc, step=0.1):
+def do_test(term, loc):
     x=0
     logFile = '/data/yelp/logs/'+term+'_'+curdate+'.log'
 
@@ -37,9 +38,12 @@ def do_test(term, loc, idx=0):
     #g = open('grid_ca_'+term+'.1', 'r')
     #g = open('grid_ca_'+term+'.2', 'r')
     #g = open('grid_ca_'+term+'.'+str(idx), 'r')
-    #g = open('grid_ca_'+term+'_over1000', 'r')
-    g = open('grid_ca_'+term+'.'+str(idx), 'r')
+    #g = open('./grid_data/grid_ca_'+term+'_over1000', 'r')
+    #g = open('./grid_data/grid_ca_'+term+'.'+str(idx), 'r')
+    #g = open('./grid_data/grid_ca_over1000_'+term, 'r')
+    g = open('./grid_data/grid_ca_over1000', 'r')
 
+    
     """
     pos = []
     
@@ -51,8 +55,8 @@ def do_test(term, loc, idx=0):
     
     for ne in pos:
         
-        sw1 = float(ne[0])-0.1
-        sw2 = float(ne[1])-0.1
+        sw1 = float(ne[0])-step
+        sw2 = float(ne[1])-step
         s = ne[0] + ',' + ne[1] + '|' + str(sw1) + ',' + str(sw2)
         
         print s
@@ -71,8 +75,9 @@ def do_test(term, loc, idx=0):
         time.sleep(0.1)
         
         #break
+        
     """
-    
+    #full Position SW~NE
     for s in g:
         
         #print s
@@ -92,7 +97,8 @@ def do_test(term, loc, idx=0):
         time.sleep(0.1)
         
         #break
-    
+     
+        
     f.close()
 
             
@@ -182,6 +188,7 @@ if __name__ == '__main__':
     
     
     #do_test(term, 'ca', idx)        
+    #do_test(term, 'ca', 0.01)
     do_test(term, 'ca')
     #init_file(term)
 
